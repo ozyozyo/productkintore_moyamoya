@@ -43,7 +43,15 @@ class MoyamoyaDetailScreen extends HookConsumerWidget
                 height: 24,
               ),
               Text(value.moyamoya),
-              ElevatedButton(onPressed: () {}, child: Text("コメントする")),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/comment", arguments: value);
+                  },
+                  child: Text("コメントする")),
+              SizedBox(
+                height: 24,
+              ),
+              composeComments(context, value),
             ]),
           ),
         ),
@@ -53,5 +61,51 @@ class MoyamoyaDetailScreen extends HookConsumerWidget
     }, loading: () {
       return Placeholder();
     });
+  }
+
+  composeComments(BuildContext context, Moyamoya moyamoya) {
+    var result = <Widget>[];
+    result.add(
+      Text(
+        "コメント",
+        style: Theme.of(context).textTheme.titleMedium,
+      ),
+    );
+    result.add(
+      SizedBox(
+        height: 24,
+      ),
+    );
+    for (var m in moyamoya.comments) {
+      result.add(Text(m["comment"]!));
+      result.add(
+        SizedBox(
+          height: 24,
+        ),
+      );
+      result.add(
+        Divider(
+          height: 10,
+          thickness: 5,
+          endIndent: 0,
+          color: Colors.grey,
+        ),
+      );
+      result.add(
+        SizedBox(
+          height: 24,
+        ),
+      );
+    }
+    if (result.length == 2) {
+      result.add(
+        Text(
+          "コメントはまだありません。一人目のコメントを書きましょう！",
+        ),
+      );
+    }
+    return Column(
+      children: result,
+    );
   }
 }

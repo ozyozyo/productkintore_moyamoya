@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:productkintore/ui/screen_home.dart';
+import 'package:productkintore/ui/screen_moyamoya_comment.dart';
 import 'package:productkintore/ui/screen_moyamoya_create.dart';
 import 'package:productkintore/ui/screen_moyamoya_detail.dart';
 
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/home': (BuildContext context) => HomeScreen(),
         '/createMoyamoya': (BuildContext context) => MoyamoyaCreateScreen(),
+        '/comment': (BuildContext context) => MoyamoyaCommentScreen(),
       },
       onGenerateRoute: (setting) {
         if (setting.name != null) {
