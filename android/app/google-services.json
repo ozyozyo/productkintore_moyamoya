@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "506628283836",
+    "project_id": "product-kintore",
+    "storage_bucket": "product-kintore.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506628283836:android:57b28967af654ce65e1fb9",
+        "android_client_info": {
+          "package_name": "life.malk.productkintore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "506628283836-92crtcr4ji98tkctcmgi2hhmni2v1jmv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOdn7-agKoQw3AxLd1sJxAOhNDC8EFbo4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "506628283836-92crtcr4ji98tkctcmgi2hhmni2v1jmv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
