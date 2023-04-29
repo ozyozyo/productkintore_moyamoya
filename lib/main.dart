@@ -36,9 +36,9 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: (setting) {
         if (setting.name != null) {
           final settingsUri = Uri.parse(setting.name!);
-          final moyamoyaId = settingsUri.queryParameters['moyamoyaId'];
+          final ts = settingsUri.queryParameters['ts'];
           return MaterialPageRoute(
-            builder: (_) => MoyamoyaDetailScreen(moyamoyaId: moyamoyaId),
+            builder: (_) => MoyamoyaDetailScreen(ts: ts),
           );
         }
       },

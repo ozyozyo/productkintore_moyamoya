@@ -10,20 +10,20 @@ import 'package:productkintore/ui/screen_home.dart';
 
 class MoyamoyaDetailScreen extends HookConsumerWidget
     with WidgetsBindingObserver {
-  String? moyamoyaId;
-  MoyamoyaDetailScreen({this.moyamoyaId});
+  String? ts;
+  MoyamoyaDetailScreen({this.ts});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var moyamoya = ModalRoute.of(context)!.settings.arguments;
-    if (moyamoyaId != null && moyamoya is Moyamoya) {
-      moyamoyaId = moyamoya.moyamoyaId;
+    if (ts != null && moyamoya is Moyamoya) {
+      ts = moyamoya.ts;
     }
-    if (moyamoyaId == null) {
+    if (ts == null) {
       return HomeScreen();
     }
 
-    var provider = ref.watch(fetchMoyamoyaProvider(moyamoyaId!));
+    var provider = ref.watch(fetchMoyamoyaProvider(ts!));
     return provider.when(data: (value) {
       return Scaffold(
         appBar: AppBar(),

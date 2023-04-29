@@ -19,9 +19,9 @@ final fetchAllMoyamoyaProvider = FutureProvider.autoDispose<List<Moyamoya>>(
 );
 final fetchMoyamoyaProvider =
     FutureProvider.autoDispose.family<Moyamoya, String>(
-  (ref, moyamoyaId) async {
+  (ref, ts) async {
     var provider = ref.watch(moyamoyaProvider);
-    var data = await provider.fetchMoyamoya(moyamoyaId: moyamoyaId);
+    var data = await provider.fetchMoyamoya(ts: ts);
     return data.when(success: (value) {
       return value;
     }, failure: (e) {
@@ -39,9 +39,9 @@ abstract class MoyamoyaRepository {
       required String title,
       required String moyamoya});
   Future<Result<void>> commentMoyamoya(
-      {required String moyamoyaId, required String comment});
+      {required String ts, required String comment});
   Future<Result<List<Moyamoya>>> fetchAllMoyamoya({DateTime? since});
-  Future<Result<Moyamoya?>> fetchMoyamoya({required String moyamoyaId});
+  Future<Result<Moyamoya?>> fetchMoyamoya({required String ts});
 }
 
 class MoyamoyaRepositoryImpl implements MoyamoyaRepository {
@@ -53,12 +53,11 @@ class MoyamoyaRepositoryImpl implements MoyamoyaRepository {
 
   @override
   Future<Result<void>> commentMoyamoya(
-      {required String moyamoyaId, required String comment}) {
+      {required String ts, required String comment}) {
     String userId = FirebaseAuth.instance.currentUser!.uid;
 
     return _firestoreDataSource
-        .commentMoyamoya(
-            userId: userId, comment: comment, moyamoyaId: moyamoyaId)
+        .commentMoyamoya(userId: userId, comment: comment, ts: ts)
         .then((value) {
       if (value) return Result.success("");
       return Result.failure("");
@@ -92,10 +91,8 @@ class MoyamoyaRepositoryImpl implements MoyamoyaRepository {
   }
 
   @override
-  Future<Result<Moyamoya?>> fetchMoyamoya({required String moyamoyaId}) {
-    return _firestoreDataSource
-        .fetchMoyamoya(moyamoyaId: moyamoyaId)
-        .then((value) {
+  Future<Result<Moyamoya?>> fetchMoyamoya({required String ts}) {
+    return _firestoreDataSource.fetchMoyamoya(ts: ts).then((value) {
       return Result.success(value);
     }).catchError((error) => Result.failure(error));
   }

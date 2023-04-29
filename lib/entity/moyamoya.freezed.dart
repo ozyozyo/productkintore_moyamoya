@@ -20,10 +20,10 @@ Moyamoya _$MoyamoyaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Moyamoya {
-  String get moyamoyaId => throw _privateConstructorUsedError;
   String get moyamoyaUser => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get moyamoya => throw _privateConstructorUsedError;
+  String get ts => throw _privateConstructorUsedError;
   List<Map<String, String>> get comments => throw _privateConstructorUsedError;
   @DateTimeConverter()
   DateTime? get createdAt => throw _privateConstructorUsedError;
@@ -40,10 +40,10 @@ abstract class $MoyamoyaCopyWith<$Res> {
       _$MoyamoyaCopyWithImpl<$Res, Moyamoya>;
   @useResult
   $Res call(
-      {String moyamoyaId,
-      String moyamoyaUser,
+      {String moyamoyaUser,
       String title,
       String moyamoya,
+      String ts,
       List<Map<String, String>> comments,
       @DateTimeConverter() DateTime? createdAt});
 }
@@ -61,18 +61,14 @@ class _$MoyamoyaCopyWithImpl<$Res, $Val extends Moyamoya>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? moyamoyaId = null,
     Object? moyamoyaUser = null,
     Object? title = null,
     Object? moyamoya = null,
+    Object? ts = null,
     Object? comments = null,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
-      moyamoyaId: null == moyamoyaId
-          ? _value.moyamoyaId
-          : moyamoyaId // ignore: cast_nullable_to_non_nullable
-              as String,
       moyamoyaUser: null == moyamoyaUser
           ? _value.moyamoyaUser
           : moyamoyaUser // ignore: cast_nullable_to_non_nullable
@@ -84,6 +80,10 @@ class _$MoyamoyaCopyWithImpl<$Res, $Val extends Moyamoya>
       moyamoya: null == moyamoya
           ? _value.moyamoya
           : moyamoya // ignore: cast_nullable_to_non_nullable
+              as String,
+      ts: null == ts
+          ? _value.ts
+          : ts // ignore: cast_nullable_to_non_nullable
               as String,
       comments: null == comments
           ? _value.comments
@@ -105,10 +105,10 @@ abstract class _$$_MoyamoyaCopyWith<$Res> implements $MoyamoyaCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String moyamoyaId,
-      String moyamoyaUser,
+      {String moyamoyaUser,
       String title,
       String moyamoya,
+      String ts,
       List<Map<String, String>> comments,
       @DateTimeConverter() DateTime? createdAt});
 }
@@ -124,18 +124,14 @@ class __$$_MoyamoyaCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? moyamoyaId = null,
     Object? moyamoyaUser = null,
     Object? title = null,
     Object? moyamoya = null,
+    Object? ts = null,
     Object? comments = null,
     Object? createdAt = freezed,
   }) {
     return _then(_$_Moyamoya(
-      moyamoyaId: null == moyamoyaId
-          ? _value.moyamoyaId
-          : moyamoyaId // ignore: cast_nullable_to_non_nullable
-              as String,
       moyamoyaUser: null == moyamoyaUser
           ? _value.moyamoyaUser
           : moyamoyaUser // ignore: cast_nullable_to_non_nullable
@@ -147,6 +143,10 @@ class __$$_MoyamoyaCopyWithImpl<$Res>
       moyamoya: null == moyamoya
           ? _value.moyamoya
           : moyamoya // ignore: cast_nullable_to_non_nullable
+              as String,
+      ts: null == ts
+          ? _value.ts
+          : ts // ignore: cast_nullable_to_non_nullable
               as String,
       comments: null == comments
           ? _value._comments
@@ -164,10 +164,10 @@ class __$$_MoyamoyaCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Moyamoya implements _Moyamoya {
   const _$_Moyamoya(
-      {required this.moyamoyaId,
-      required this.moyamoyaUser,
+      {required this.moyamoyaUser,
       required this.title,
       required this.moyamoya,
+      required this.ts,
       final List<Map<String, String>> comments = const [],
       @DateTimeConverter() this.createdAt})
       : _comments = comments;
@@ -176,13 +176,13 @@ class _$_Moyamoya implements _Moyamoya {
       _$$_MoyamoyaFromJson(json);
 
   @override
-  final String moyamoyaId;
-  @override
   final String moyamoyaUser;
   @override
   final String title;
   @override
   final String moyamoya;
+  @override
+  final String ts;
   final List<Map<String, String>> _comments;
   @override
   @JsonKey()
@@ -198,7 +198,7 @@ class _$_Moyamoya implements _Moyamoya {
 
   @override
   String toString() {
-    return 'Moyamoya(moyamoyaId: $moyamoyaId, moyamoyaUser: $moyamoyaUser, title: $title, moyamoya: $moyamoya, comments: $comments, createdAt: $createdAt)';
+    return 'Moyamoya(moyamoyaUser: $moyamoyaUser, title: $title, moyamoya: $moyamoya, ts: $ts, comments: $comments, createdAt: $createdAt)';
   }
 
   @override
@@ -206,13 +206,12 @@ class _$_Moyamoya implements _Moyamoya {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Moyamoya &&
-            (identical(other.moyamoyaId, moyamoyaId) ||
-                other.moyamoyaId == moyamoyaId) &&
             (identical(other.moyamoyaUser, moyamoyaUser) ||
                 other.moyamoyaUser == moyamoyaUser) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.moyamoya, moyamoya) ||
                 other.moyamoya == moyamoya) &&
+            (identical(other.ts, ts) || other.ts == ts) &&
             const DeepCollectionEquality().equals(other._comments, _comments) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
@@ -220,8 +219,8 @@ class _$_Moyamoya implements _Moyamoya {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, moyamoyaId, moyamoyaUser, title,
-      moyamoya, const DeepCollectionEquality().hash(_comments), createdAt);
+  int get hashCode => Object.hash(runtimeType, moyamoyaUser, title, moyamoya,
+      ts, const DeepCollectionEquality().hash(_comments), createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -239,23 +238,23 @@ class _$_Moyamoya implements _Moyamoya {
 
 abstract class _Moyamoya implements Moyamoya {
   const factory _Moyamoya(
-      {required final String moyamoyaId,
-      required final String moyamoyaUser,
+      {required final String moyamoyaUser,
       required final String title,
       required final String moyamoya,
+      required final String ts,
       final List<Map<String, String>> comments,
       @DateTimeConverter() final DateTime? createdAt}) = _$_Moyamoya;
 
   factory _Moyamoya.fromJson(Map<String, dynamic> json) = _$_Moyamoya.fromJson;
 
   @override
-  String get moyamoyaId;
-  @override
   String get moyamoyaUser;
   @override
   String get title;
   @override
   String get moyamoya;
+  @override
+  String get ts;
   @override
   List<Map<String, String>> get comments;
   @override

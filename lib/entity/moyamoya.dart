@@ -8,10 +8,10 @@ part 'moyamoya.g.dart';
 @freezed
 abstract class Moyamoya with _$Moyamoya {
   const factory Moyamoya({
-    required String moyamoyaId,
     required String moyamoyaUser,
     required String title,
     required String moyamoya,
+    required String ts,
     @Default([]) List<Map<String, String>> comments,
     @DateTimeConverter() DateTime? createdAt,
   }) = _Moyamoya;

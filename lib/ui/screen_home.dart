@@ -37,12 +37,6 @@ class HomeScreen extends HookConsumerWidget with WidgetsBindingObserver {
                 children: composeMenu(menu).toList(),
               ),
             ),
-            floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.text_increase),
-              onPressed: () {
-                Navigator.pushNamed(context, "/createMoyamoya");
-              },
-            ),
           );
         });
   }

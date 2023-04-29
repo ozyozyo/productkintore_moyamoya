@@ -68,7 +68,7 @@ class MoyamoyaCommentScreen extends HookConsumerWidget
                         ref
                             .read(moyamoyaProvider)
                             .commentMoyamoya(
-                              moyamoyaId: moyamoya.moyamoyaId,
+                              ts: moyamoya.ts,
                               comment: _comment,
                             )
                             .whenComplete(() {

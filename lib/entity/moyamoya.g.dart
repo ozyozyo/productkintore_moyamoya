@@ -7,10 +7,10 @@ part of 'moyamoya.dart';
 // **************************************************************************
 
 _$_Moyamoya _$$_MoyamoyaFromJson(Map<String, dynamic> json) => _$_Moyamoya(
-      moyamoyaId: json['moyamoyaId'] as String,
       moyamoyaUser: json['moyamoyaUser'] as String,
       title: json['title'] as String,
       moyamoya: json['moyamoya'] as String,
+      ts: json['ts'] as String,
       comments: (json['comments'] as List<dynamic>?)
               ?.map((e) => Map<String, String>.from(e as Map))
               .toList() ??
@@ -20,10 +20,10 @@ _$_Moyamoya _$$_MoyamoyaFromJson(Map<String, dynamic> json) => _$_Moyamoya(
 
 Map<String, dynamic> _$$_MoyamoyaToJson(_$_Moyamoya instance) =>
     <String, dynamic>{
-      'moyamoyaId': instance.moyamoyaId,
       'moyamoyaUser': instance.moyamoyaUser,
       'title': instance.title,
       'moyamoya': instance.moyamoya,
+      'ts': instance.ts,
       'comments': instance.comments,
       'createdAt': const DateTimeConverter().toJson(instance.createdAt),
     };

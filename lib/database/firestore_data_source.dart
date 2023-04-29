@@ -17,11 +17,9 @@ abstract class FirestoreDataSource {
       required String title,
       required String moyamoya});
   Future<bool> commentMoyamoya(
-      {required String moyamoyaId,
-      required String userId,
-      required String comment});
+      {required String ts, required String userId, required String comment});
   Future<List<Moyamoya>> fetchAllMoyamoya({DateTime? since});
-  Future<Moyamoya?> fetchMoyamoya({required String moyamoyaId});
+  Future<Moyamoya?> fetchMoyamoya({required String ts});
 }
 
 class FirestoreDataSourceImpl implements FirestoreDataSource {
@@ -56,11 +54,11 @@ class FirestoreDataSourceImpl implements FirestoreDataSource {
 
   @override
   Future<bool> commentMoyamoya(
-      {required String moyamoyaId,
+      {required String ts,
       required String userId,
       required String comment}) async {
     try {
-      var doc = instance.collection("moyamoya").doc(moyamoyaId);
+      var doc = instance.collection("moyamoya").doc(ts);
       Map<String, String> obj = {
         "commented": userId,
         "comment": comment,
@@ -82,7 +80,7 @@ class FirestoreDataSourceImpl implements FirestoreDataSource {
     if (since != null) {
       query.where("createdAt", isLessThan: since);
     }
-    query.limit(20);
+    query.limit(1);
 
     var snapshot = await query.get();
 
@@ -92,8 +90,8 @@ class FirestoreDataSourceImpl implements FirestoreDataSource {
   }
 
   @override
-  Future<Moyamoya?> fetchMoyamoya({required String moyamoyaId}) async {
-    var docRef = instance.collection("moyamoya").doc(moyamoyaId);
+  Future<Moyamoya?> fetchMoyamoya({required String ts}) async {
+    var docRef = instance.collection("moyamoya").doc(ts);
     var docSnapShot = await docRef.get();
     var data = docSnapShot.data();
 
