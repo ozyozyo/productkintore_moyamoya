@@ -24,6 +24,7 @@ mixin _$Moyamoya {
   String get title => throw _privateConstructorUsedError;
   String get moyamoya => throw _privateConstructorUsedError;
   String get ts => throw _privateConstructorUsedError;
+  String get slackMessageUrl => throw _privateConstructorUsedError;
   List<Map<String, String>> get comments => throw _privateConstructorUsedError;
   @DateTimeConverter()
   DateTime? get createdAt => throw _privateConstructorUsedError;
@@ -44,6 +45,7 @@ abstract class $MoyamoyaCopyWith<$Res> {
       String title,
       String moyamoya,
       String ts,
+      String slackMessageUrl,
       List<Map<String, String>> comments,
       @DateTimeConverter() DateTime? createdAt});
 }
@@ -65,6 +67,7 @@ class _$MoyamoyaCopyWithImpl<$Res, $Val extends Moyamoya>
     Object? title = null,
     Object? moyamoya = null,
     Object? ts = null,
+    Object? slackMessageUrl = null,
     Object? comments = null,
     Object? createdAt = freezed,
   }) {
@@ -84,6 +87,10 @@ class _$MoyamoyaCopyWithImpl<$Res, $Val extends Moyamoya>
       ts: null == ts
           ? _value.ts
           : ts // ignore: cast_nullable_to_non_nullable
+              as String,
+      slackMessageUrl: null == slackMessageUrl
+          ? _value.slackMessageUrl
+          : slackMessageUrl // ignore: cast_nullable_to_non_nullable
               as String,
       comments: null == comments
           ? _value.comments
@@ -109,6 +116,7 @@ abstract class _$$_MoyamoyaCopyWith<$Res> implements $MoyamoyaCopyWith<$Res> {
       String title,
       String moyamoya,
       String ts,
+      String slackMessageUrl,
       List<Map<String, String>> comments,
       @DateTimeConverter() DateTime? createdAt});
 }
@@ -128,6 +136,7 @@ class __$$_MoyamoyaCopyWithImpl<$Res>
     Object? title = null,
     Object? moyamoya = null,
     Object? ts = null,
+    Object? slackMessageUrl = null,
     Object? comments = null,
     Object? createdAt = freezed,
   }) {
@@ -147,6 +156,10 @@ class __$$_MoyamoyaCopyWithImpl<$Res>
       ts: null == ts
           ? _value.ts
           : ts // ignore: cast_nullable_to_non_nullable
+              as String,
+      slackMessageUrl: null == slackMessageUrl
+          ? _value.slackMessageUrl
+          : slackMessageUrl // ignore: cast_nullable_to_non_nullable
               as String,
       comments: null == comments
           ? _value._comments
@@ -168,6 +181,7 @@ class _$_Moyamoya implements _Moyamoya {
       required this.title,
       required this.moyamoya,
       required this.ts,
+      this.slackMessageUrl = "",
       final List<Map<String, String>> comments = const [],
       @DateTimeConverter() this.createdAt})
       : _comments = comments;
@@ -183,6 +197,9 @@ class _$_Moyamoya implements _Moyamoya {
   final String moyamoya;
   @override
   final String ts;
+  @override
+  @JsonKey()
+  final String slackMessageUrl;
   final List<Map<String, String>> _comments;
   @override
   @JsonKey()
@@ -198,7 +215,7 @@ class _$_Moyamoya implements _Moyamoya {
 
   @override
   String toString() {
-    return 'Moyamoya(moyamoyaUser: $moyamoyaUser, title: $title, moyamoya: $moyamoya, ts: $ts, comments: $comments, createdAt: $createdAt)';
+    return 'Moyamoya(moyamoyaUser: $moyamoyaUser, title: $title, moyamoya: $moyamoya, ts: $ts, slackMessageUrl: $slackMessageUrl, comments: $comments, createdAt: $createdAt)';
   }
 
   @override
@@ -212,6 +229,8 @@ class _$_Moyamoya implements _Moyamoya {
             (identical(other.moyamoya, moyamoya) ||
                 other.moyamoya == moyamoya) &&
             (identical(other.ts, ts) || other.ts == ts) &&
+            (identical(other.slackMessageUrl, slackMessageUrl) ||
+                other.slackMessageUrl == slackMessageUrl) &&
             const DeepCollectionEquality().equals(other._comments, _comments) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
@@ -219,8 +238,15 @@ class _$_Moyamoya implements _Moyamoya {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, moyamoyaUser, title, moyamoya,
-      ts, const DeepCollectionEquality().hash(_comments), createdAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      moyamoyaUser,
+      title,
+      moyamoya,
+      ts,
+      slackMessageUrl,
+      const DeepCollectionEquality().hash(_comments),
+      createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -242,6 +268,7 @@ abstract class _Moyamoya implements Moyamoya {
       required final String title,
       required final String moyamoya,
       required final String ts,
+      final String slackMessageUrl,
       final List<Map<String, String>> comments,
       @DateTimeConverter() final DateTime? createdAt}) = _$_Moyamoya;
 
@@ -255,6 +282,8 @@ abstract class _Moyamoya implements Moyamoya {
   String get moyamoya;
   @override
   String get ts;
+  @override
+  String get slackMessageUrl;
   @override
   List<Map<String, String>> get comments;
   @override

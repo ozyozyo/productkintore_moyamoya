@@ -12,6 +12,7 @@ abstract class Moyamoya with _$Moyamoya {
     required String title,
     required String moyamoya,
     required String ts,
+    @Default("") String slackMessageUrl,
     @Default([]) List<Map<String, String>> comments,
     @DateTimeConverter() DateTime? createdAt,
   }) = _Moyamoya;

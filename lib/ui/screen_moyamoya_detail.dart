@@ -1,12 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutterfire_ui/auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:productkintore/entity/moyamoya.dart';
 import 'package:productkintore/provider/moyamoya_provider.dart';
-import 'package:productkintore/provider/result.dart';
 import 'package:productkintore/ui/screen_home.dart';
+
+import 'dart:html' as html;
 
 class MoyamoyaDetailScreen extends HookConsumerWidget
     with WidgetsBindingObserver {
@@ -37,6 +35,15 @@ class MoyamoyaDetailScreen extends HookConsumerWidget
                 height: 24,
               ),
               Text(value.moyamoya),
+              SizedBox(
+                height: 24,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    html.window.open(value.slackMessageUrl, "");
+                  },
+                  child: Text("Slackをひらく")),
+
               /*
               ElevatedButton(
                   onPressed: () {
@@ -61,7 +68,7 @@ class MoyamoyaDetailScreen extends HookConsumerWidget
     }, error: (e, s) {
       return Placeholder();
     }, loading: () {
-      return Placeholder();
+      return Container();
     });
   }
 
@@ -70,7 +77,7 @@ class MoyamoyaDetailScreen extends HookConsumerWidget
     result.add(
       Text(
         "コメント",
-        style: Theme.of(context).textTheme.titleMedium,
+        style: Theme.of(context).textTheme.titleLarge,
       ),
     );
     result.add(

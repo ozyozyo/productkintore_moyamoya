@@ -11,6 +11,7 @@ _$_Moyamoya _$$_MoyamoyaFromJson(Map<String, dynamic> json) => _$_Moyamoya(
       title: json['title'] as String,
       moyamoya: json['moyamoya'] as String,
       ts: json['ts'] as String,
+      slackMessageUrl: json['slackMessageUrl'] as String? ?? "",
       comments: (json['comments'] as List<dynamic>?)
               ?.map((e) => Map<String, String>.from(e as Map))
               .toList() ??
@@ -24,6 +25,7 @@ Map<String, dynamic> _$$_MoyamoyaToJson(_$_Moyamoya instance) =>
       'title': instance.title,
       'moyamoya': instance.moyamoya,
       'ts': instance.ts,
+      'slackMessageUrl': instance.slackMessageUrl,
       'comments': instance.comments,
       'createdAt': const DateTimeConverter().toJson(instance.createdAt),
     };

@@ -86,9 +86,10 @@ class FirestoreDataSourceImpl implements FirestoreDataSource {
 
     var snapshot = await query.get();
 
-    return snapshot.docs
-        .map((event) => Moyamoya.fromJson(event.data()))
-        .toList();
+    return snapshot.docs.map((event) {
+      var a = event.data();
+      return Moyamoya.fromJson(a);
+    }).toList();
   }
 
   @override
