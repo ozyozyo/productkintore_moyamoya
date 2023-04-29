@@ -27,7 +27,6 @@ class MoyamoyaScreen extends HookConsumerWidget with WidgetsBindingObserver {
       itemBuilder: (context, index) {
         var text = moyamoyaList.value[index].moyamoya;
         return ListTile(
-          title: Text(moyamoyaList.value[index].title),
           subtitle: Text(text.substring(0, Math.min(200, text.length)) + "..."),
           onTap: () {
             Navigator.pushNamed(

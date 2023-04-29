@@ -31,25 +31,27 @@ class MoyamoyaDetailScreen extends HookConsumerWidget
           padding: EdgeInsets.all(24),
           width: double.infinity,
           child: SingleChildScrollView(
-            child: Column(children: [
-              SizedBox(
-                height: 24,
-              ),
-              Text(
-                value.title,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
               SizedBox(
                 height: 24,
               ),
               Text(value.moyamoya),
+              /*
               ElevatedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, "/comment", arguments: value);
                   },
                   child: Text("コメントする")),
+              */
               SizedBox(
                 height: 24,
+              ),
+              Divider(
+                height: 10,
+                thickness: 5,
+                endIndent: 0,
+                color: Colors.grey,
               ),
               composeComments(context, value),
             ]),
@@ -105,6 +107,8 @@ class MoyamoyaDetailScreen extends HookConsumerWidget
       );
     }
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: result,
     );
   }

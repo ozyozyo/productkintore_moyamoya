@@ -76,11 +76,13 @@ class FirestoreDataSourceImpl implements FirestoreDataSource {
 
   @override
   Future<List<Moyamoya>> fetchAllMoyamoya({DateTime? since}) async {
-    var query = instance.collection("moyamoya");
+    var query =
+        instance.collection("moyamoya").orderBy("createdAt", descending: true);
+    /*
     if (since != null) {
       query.where("createdAt", isLessThan: since);
     }
-    query.limit(1);
+    */
 
     var snapshot = await query.get();
 
