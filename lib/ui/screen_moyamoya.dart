@@ -29,11 +29,19 @@ class MoyamoyaScreen extends HookConsumerWidget with WidgetsBindingObserver {
         if (searchController.text.isEmpty) {
           searchResult.value = [];
         } else {
-          final result = moyamoyaList.value
-              .where((moyamoya) => moyamoya.moyamoya
+          final keywords = searchController.text.split(" ");
+          final result = moyamoyaList.value.where((moyamoya) {
+            bool match = true;
+            for (final keyword in keywords) {
+              if (!moyamoya.moyamoya
                   .toLowerCase()
-                  .contains(searchController.text.toLowerCase()))
-              .toList();
+                  .contains(keyword.toLowerCase())) {
+                match = false;
+                break;
+              }
+            }
+            return match;
+          }).toList();
           searchResult.value = result;
         }
       });
