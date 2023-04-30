@@ -52,23 +52,25 @@ class MoyamoyaScreen extends HookConsumerWidget with WidgetsBindingObserver {
             border: InputBorder.none,
             hintStyle: TextStyle(color: Colors.white),
           ),
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         ),
       ),
-      body: searchResult.value.length != 0 || searchController.text.isNotEmpty
+      body: searchResult.value.isNotEmpty || searchController.text.isNotEmpty
           ? ListView.separated(
               separatorBuilder: (context, index) {
-                return Divider(height: 0.5);
+                return const Divider(height: 0.5);
               },
               itemCount: searchResult.value.length,
               itemBuilder: (BuildContext context, int index) {
                 var text = searchResult.value[index].moyamoya;
                 return ListTile(
+                  title: Text(
+                      "${text.substring(0, Math.min(200, text.length))}..."),
                   subtitle: Text(
-                      text.substring(0, Math.min(200, text.length)) + "..."),
+                      "コメント数: ${searchResult.value[index].comments.length}, 投稿日: ${searchResult.value[index].createdAt}"),
                   onTap: () {
                     Navigator.pushNamed(context,
-                        "/moyamoyaDetail?ts=" + searchResult.value[index].ts,
+                        "/moyamoyaDetail?ts=${searchResult.value[index].ts}",
                         arguments: searchResult.value[index]);
                   },
                 );
@@ -76,17 +78,19 @@ class MoyamoyaScreen extends HookConsumerWidget with WidgetsBindingObserver {
             )
           : ListView.separated(
               separatorBuilder: (context, index) {
-                return Divider(height: 0.5);
+                return const Divider(height: 0.5);
               },
               itemCount: moyamoyaList.value.length,
               itemBuilder: (BuildContext context, int index) {
                 var text = moyamoyaList.value[index].moyamoya;
                 return ListTile(
+                  title: Text(
+                      "${text.substring(0, Math.min(200, text.length))}..."),
                   subtitle: Text(
-                      text.substring(0, Math.min(200, text.length)) + "..."),
+                      "コメント数: ${moyamoyaList.value[index].comments.length}, 投稿日: ${moyamoyaList.value[index].createdAt}"),
                   onTap: () {
                     Navigator.pushNamed(context,
-                        "/moyamoyaDetail?ts=" + moyamoyaList.value[index].ts,
+                        "/moyamoyaDetail?ts=${moyamoyaList.value[index].ts}",
                         arguments: moyamoyaList.value[index]);
                   },
                 );
