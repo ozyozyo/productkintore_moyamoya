@@ -9,7 +9,17 @@ class MoyamoyaScreen extends HookConsumerWidget with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var moyamoyaList = useState<List<Moyamoya>>([]);
-    var provider = ref.watch(fetchAllMoyamoyaProvider);
+    if (moyamoyaList.value.isEmpty) {
+      var provider = ref.watch(fetchAllMoyamoyaProvider);
+      provider.when(
+          data: (data) {
+            moyamoyaList.value.addAll(data);
+          },
+          error: (e, s) {
+            print(e);
+          },
+          loading: () {});
+    }
 
     final searchController = useTextEditingController();
     final searchResult = useState<List<Moyamoya>>([]);
@@ -32,14 +42,6 @@ class MoyamoyaScreen extends HookConsumerWidget with WidgetsBindingObserver {
         searchController.dispose();
       };
     }, []);
-    provider.when(
-        data: (data) {
-          moyamoyaList.value.addAll(data);
-        },
-        error: (e, s) {
-          print(e);
-        },
-        loading: () {});
 
     return Scaffold(
       appBar: AppBar(
