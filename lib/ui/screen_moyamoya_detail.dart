@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -22,6 +23,13 @@ class MoyamoyaDetailScreen extends HookConsumerWidget
     if (ts == null) {
       return HomeScreen();
     }
+    FirebaseAnalytics.instance.logEvent(
+      name: 'moyamoya_detail',
+      parameters: <String, dynamic>{
+        'category': 'moyamoya',
+        'ts': ts,
+      },
+    );
 
     final unescape = HtmlUnescape();
 

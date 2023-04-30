@@ -1,3 +1,5 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -33,6 +35,9 @@ class MyApp extends StatelessWidget {
         '/createMoyamoya': (BuildContext context) => MoyamoyaCreateScreen(),
         '/comment': (BuildContext context) => MoyamoyaCommentScreen(),
       },
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
+      ],
       onGenerateRoute: (setting) {
         if (setting.name != null) {
           final settingsUri = Uri.parse(setting.name!);
