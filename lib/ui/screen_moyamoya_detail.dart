@@ -35,6 +35,7 @@ class MoyamoyaDetailScreen extends HookConsumerWidget
 
     var provider = ref.watch(fetchMoyamoyaProvider(ts!));
     return provider.when(data: (value) {
+      updateOgDescription(value.moyamoya);
       return Scaffold(
         appBar: AppBar(),
         body: Container(
@@ -152,5 +153,33 @@ class MoyamoyaDetailScreen extends HookConsumerWidget
       crossAxisAlignment: CrossAxisAlignment.start,
       children: result,
     );
+  }
+
+  void updateOgDescription(String description) {
+    final head = html.document.head;
+    final ogMetaTag = head?.querySelector('meta[property="og:title"]');
+    if (ogMetaTag == null) {
+      final newMetaTag = html.MetaElement()
+        ..attributes = {
+          'property': 'og:title',
+          'content': "プロダクト筋トレ - #モヤモヤ 記録",
+        };
+      head?.append(newMetaTag);
+    } else {
+      ogMetaTag.attributes['content'] = "プロダクト筋トレ - #モヤモヤ 記録";
+    }
+
+    final ogDescriptionMetaTag =
+        head?.querySelector('meta[property="og:description"]');
+    if (ogDescriptionMetaTag == null) {
+      final newMetaTag = html.MetaElement()
+        ..attributes = {
+          'property': 'og:description',
+          'content': description,
+        };
+      head?.append(newMetaTag);
+    } else {
+      ogDescriptionMetaTag.attributes['content'] = description;
+    }
   }
 }
