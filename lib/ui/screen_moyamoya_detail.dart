@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:html_unescape/html_unescape.dart';
 import 'package:productkintore/entity/moyamoya.dart';
 import 'package:productkintore/provider/moyamoya_provider.dart';
 import 'package:productkintore/ui/screen_home.dart';
@@ -22,6 +23,8 @@ class MoyamoyaDetailScreen extends HookConsumerWidget
       return HomeScreen();
     }
 
+    final unescape = HtmlUnescape();
+
     var provider = ref.watch(fetchMoyamoyaProvider(ts!));
     return provider.when(data: (value) {
       return Scaffold(
@@ -35,7 +38,7 @@ class MoyamoyaDetailScreen extends HookConsumerWidget
               SizedBox(
                 height: 24,
               ),
-              Text(value.moyamoya),
+              Text(unescape.convert(value.moyamoya)),
               SizedBox(
                 height: 24,
               ),
@@ -107,8 +110,9 @@ class MoyamoyaDetailScreen extends HookConsumerWidget
         height: 24,
       ),
     );
+    final unescape = HtmlUnescape();
     for (var m in moyamoya.comments) {
-      result.add(Text(m["comment"]!));
+      result.add(Text(unescape.convert(m["comment"]!)));
       result.add(
         SizedBox(
           height: 24,
