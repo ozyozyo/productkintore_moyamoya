@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:productkintore/entity/moyamoya.dart';
 import 'package:productkintore/provider/moyamoya_provider.dart';
@@ -38,12 +39,33 @@ class MoyamoyaDetailScreen extends HookConsumerWidget
               SizedBox(
                 height: 24,
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    html.window.open(value.slackMessageUrl, "");
-                  },
-                  child: Text("Slackをひらく")),
-
+              Row(
+                children: [
+                  Text("https://product-kintore.web.app/#/?ts=" + value.ts),
+                  SizedBox(
+                    width: 12,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        Clipboard.setData(ClipboardData(
+                            text: "https://product-kintore.web.app/#/?ts=" +
+                                value.ts));
+                        final snackBar = SnackBar(
+                          content: Text('コピーしました'),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
+                      child: Text("共有リンクをコピー")),
+                  SizedBox(
+                    width: 24,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        html.window.open(value.slackMessageUrl, "");
+                      },
+                      child: Text("Slackをひらく")),
+                ],
+              ),
               /*
               ElevatedButton(
                   onPressed: () {
